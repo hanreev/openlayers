@@ -60,7 +60,7 @@ class BuilderGroup {
   }
 
   /**
-   * @return {!Object<string, !Object<import("./BuilderType").default, import("./Builder.js").SerializableInstructions>>} The serializable instructions
+   * @return {!Object<string, !Object<import("./BuilderType").default, import("../canvas").SerializableInstructions>>} The serializable instructions
    */
   finish() {
     const builderInstructions = {};

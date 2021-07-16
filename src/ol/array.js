@@ -6,9 +6,10 @@
  * Performs a binary search on the provided sorted list and returns the index of the item if found. If it can't be found it'll return -1.
  * https://github.com/darkskyapp/binary-search
  *
- * @param {Array<*>} haystack Items to search through.
- * @param {*} needle The item to look for.
- * @param {Function} [opt_comparator] Comparator function.
+ * @template V
+ * @param {Array<V>} haystack Items to search through.
+ * @param {V} needle The item to look for.
+ * @param {function(V,V):number} [opt_comparator] Comparator function.
  * @return {number} The index of the item if found, -1 if not.
  */
 export function binarySearch(haystack, needle, opt_comparator) {
@@ -40,8 +41,9 @@ export function binarySearch(haystack, needle, opt_comparator) {
 
 /**
  * Compare function for array sort that is safe for numbers.
- * @param {*} a The first object to be compared.
- * @param {*} b The second object to be compared.
+ * @template V
+ * @param {V} a The first object to be compared.
+ * @param {V} b The second object to be compared.
  * @return {number} A negative number, zero, or a positive number as the first
  *     argument is less than, equal to, or greater than the second.
  */
@@ -51,8 +53,9 @@ export function numberSafeCompareFunction(a, b) {
 
 /**
  * Whether the array contains the given object.
- * @param {Array<*>} arr The array to test for the presence of the element.
- * @param {*} obj The object for which to test.
+ * @template V
+ * @param {Array<V>} arr The array to test for the presence of the element.
+ * @param {V} obj The object for which to test.
  * @return {boolean} The object is in the array.
  */
 export function includes(arr, obj) {
@@ -141,9 +144,9 @@ export function reverseSubArray(arr, begin, end) {
 }
 
 /**
- * @param {Array<VALUE>} arr The array to modify.
- * @param {!Array<VALUE>|VALUE} data The elements or arrays of elements to add to arr.
- * @template VALUE
+ * @template V
+ * @param {Array<V>} arr The array to modify.
+ * @param {!Array<V>|V} data The elements or arrays of elements to add to arr.
  */
 export function extend(arr, data) {
   const extension = Array.isArray(data) ? data : [data];
@@ -154,9 +157,9 @@ export function extend(arr, data) {
 }
 
 /**
- * @param {Array<VALUE>} arr The array to modify.
- * @param {VALUE} obj The element to remove.
- * @template VALUE
+ * @template V
+ * @param {Array<V>} arr The array to modify.
+ * @param {V} obj The element to remove.
  * @return {boolean} If the element was removed.
  */
 export function remove(arr, obj) {
@@ -169,10 +172,10 @@ export function remove(arr, obj) {
 }
 
 /**
- * @param {Array<VALUE>} arr The array to search in.
- * @param {function(VALUE, number, ?) : boolean} func The function to compare.
- * @template VALUE
- * @return {VALUE|null} The element found or null.
+ * @template V
+ * @param {Array<V>} arr The array to search in.
+ * @param {function(V, number, ?) : boolean} func The function to compare.
+ * @return {V|null} The element found or null.
  */
 export function find(arr, func) {
   const length = arr.length >>> 0;
@@ -208,8 +211,9 @@ export function equals(arr1, arr2) {
 /**
  * Sort the passed array such that the relative order of equal elements is preverved.
  * See https://en.wikipedia.org/wiki/Sorting_algorithm#Stability for details.
- * @param {Array<*>} arr The array to sort (modifies original).
- * @param {!function(*, *): number} compareFnc Comparison function.
+ * @template V
+ * @param {Array<V>} arr The array to sort (modifies original).
+ * @param {!function(V, V): number} compareFnc Comparison function.
  * @api
  */
 export function stableSort(arr, compareFnc) {
@@ -228,8 +232,9 @@ export function stableSort(arr, compareFnc) {
 }
 
 /**
- * @param {Array<*>} arr The array to search in.
- * @param {Function} func Comparison function.
+ * @template V
+ * @param {Array<V>} arr The array to search in.
+ * @param {function(V,number,Array<V>):number} func Comparison function.
  * @return {number} Return index.
  */
 export function findIndex(arr, func) {
@@ -242,8 +247,9 @@ export function findIndex(arr, func) {
 }
 
 /**
- * @param {Array<*>} arr The array to test.
- * @param {Function} [opt_func] Comparison function.
+ * @template V
+ * @param {Array<V>} arr The array to test.
+ * @param {function(V,V):number} [opt_func] Comparison function.
  * @param {boolean} [opt_strict] Strictly sorted (default false).
  * @return {boolean} Return index.
  */

@@ -18,11 +18,13 @@ const Property = {
  * @classdesc
  * Events emitted by {@link module:ol/Collection~Collection} instances are instances of this
  * type.
+ *
+ * @template T
  */
 export class CollectionEvent extends Event {
   /**
-   * @param {import("./CollectionEventType.js").default} type Type.
-   * @param {*} [opt_element] Element.
+   * @param {string} type Type.
+   * @param {T} [opt_element] Element.
    * @param {number} [opt_index] The index of the added or removed element.
    */
   constructor(type, opt_element, opt_index) {
@@ -30,7 +32,7 @@ export class CollectionEvent extends Event {
 
     /**
      * The element that is added to or removed from the collection.
-     * @type {*}
+     * @type {T}
      * @api
      */
     this.element = opt_element;
@@ -45,10 +47,10 @@ export class CollectionEvent extends Event {
 }
 
 /***
- * @template Return
+ * @template Item, Return
  * @typedef {import("./Observable").OnSignature<import("./Observable").EventTypes, import("./events/Event.js").default, Return> &
  *   import("./Observable").OnSignature<import("./ObjectEventType").Types|'change:length', import("./Object").ObjectEvent, Return> &
- *   import("./Observable").OnSignature<'add'|'remove', CollectionEvent, Return> &
+ *   import("./Observable").OnSignature<'add'|'remove', CollectionEvent<Item>, Return> &
  *   import("./Observable").CombinedOnSignature<import("./Observable").EventTypes|import("./ObjectEventType").Types|
  *     'change:length'|'add'|'remove',Return>} CollectionOnSignature
  */
@@ -81,17 +83,17 @@ class Collection extends BaseObject {
     super();
 
     /***
-     * @type {CollectionOnSignature<import("./Observable.js").OnReturn>}
+     * @type {CollectionOnSignature<T, import("./Observable.js").OnReturn>}
      */
     this.on;
 
     /***
-     * @type {CollectionOnSignature<import("./Observable.js").OnReturn>}
+     * @type {CollectionOnSignature<T, import("./Observable.js").OnReturn>}
      */
     this.once;
 
     /***
-     * @type {CollectionOnSignature<void>}
+     * @type {CollectionOnSignature<T, void>}
      */
     this.un;
 
